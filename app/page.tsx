@@ -302,7 +302,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="border-t bg-background">
+      <section className="border-t bg-muted/30">
         <div className="container px-6 py-12 sm:py-16 lg:py-20">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="text-balance text-2xl font-bold leading-tight tracking-tight sm:text-3xl">
