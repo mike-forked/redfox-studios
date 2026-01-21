@@ -1,5 +1,4 @@
 import Image from "next/image"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 
 export interface Project {
@@ -20,38 +19,53 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project, onClick }: ProjectCardProps) {
   return (
-    <Card
-      className="group cursor-pointer overflow-hidden transition-all hover:shadow-lg"
+    <button
       onClick={onClick}
+      className="group block w-full overflow-hidden rounded-xl border bg-card text-left shadow-sm transition-shadow hover:shadow-md"
     >
-      <div className="aspect-video w-full overflow-hidden bg-muted">
+      <div className="aspect-video w-full overflow-hidden bg-muted/50">
         {project.image ? (
           <Image
             src={project.image}
             alt={project.title}
-            width={600}
-            height={400}
-            className="h-full w-full object-cover transition-transform group-hover:scale-105"
+            width={800}
+            height={450}
+            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center text-muted-foreground">
-            <span className="text-sm">No preview available</span>
+          <div className="flex h-full w-full items-center justify-center">
+            <div className="text-center">
+              <div className="mb-2 text-4xl font-bold text-muted-foreground/20">
+                {project.title.charAt(0)}
+              </div>
+              <p className="text-xs text-muted-foreground">No preview available</p>
+            </div>
           </div>
         )}
       </div>
-      <CardHeader>
-        <CardTitle>{project.title}</CardTitle>
-        <CardDescription>{project.description}</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <div className="flex flex-wrap gap-2">
-          {project.tags.map((tag) => (
-            <Badge key={tag} variant="secondary">
+
+      <div className="p-6">
+        <h3 className="mb-2 text-lg font-semibold tracking-tight">
+          {project.title}
+        </h3>
+
+        <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
+          {project.description}
+        </p>
+
+        <div className="flex flex-wrap gap-1.5">
+          {project.tags.slice(0, 3).map((tag) => (
+            <Badge key={tag} variant="secondary" className="text-xs font-normal">
               {tag}
             </Badge>
           ))}
+          {project.tags.length > 3 && (
+            <Badge variant="secondary" className="text-xs font-normal">
+              +{project.tags.length - 3}
+            </Badge>
+          )}
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </button>
   )
 }
