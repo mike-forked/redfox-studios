@@ -51,7 +51,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   return (
-    <div className="container py-12 md:py-16">
+    <div className="container px-6 py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-3xl">
         <Button variant="ghost" size="sm" asChild className="mb-8">
           <Link href="/blog">
@@ -61,11 +61,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </Button>
 
         <article>
-          <header className="mb-8 space-y-4">
+          <header className="mb-8 space-y-3">
             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
               {post.title}
             </h1>
-            <p className="text-xl text-muted-foreground">{post.description}</p>
+            <p className="text-lg text-muted-foreground sm:text-xl">{post.description}</p>
 
             <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
               <time dateTime={post.date}>
@@ -76,9 +76,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 })}
               </time>
               <Separator orientation="vertical" className="h-4" />
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-1.5">
                 {post.tags.map((tag) => (
-                  <Badge key={tag} variant="secondary">
+                  <Badge key={tag} variant="secondary" className="text-xs font-normal">
                     {tag}
                   </Badge>
                 ))}
