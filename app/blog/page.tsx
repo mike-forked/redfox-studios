@@ -11,10 +11,10 @@ export default function BlogPage() {
   const allTags = getAllTags()
 
   return (
-    <div className="container px-6 py-16 sm:py-20 lg:py-24">
-      <div className="mb-12">
-        <h1 className="mb-3 text-4xl font-bold tracking-tight">Blog</h1>
-        <p className="text-base text-muted-foreground sm:text-lg">
+    <div className="container px-6 py-12 sm:py-16 lg:py-20">
+      <div className="mb-10">
+        <h1 className="mb-2 text-3xl font-bold leading-tight tracking-tight sm:text-4xl">Blog</h1>
+        <p className="text-sm text-muted-foreground sm:text-base">
           Insights, tutorials, and stories from our team
         </p>
       </div>

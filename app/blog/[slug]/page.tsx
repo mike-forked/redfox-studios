@@ -51,23 +51,23 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   return (
-    <div className="container px-6 py-16 sm:py-20 lg:py-24">
+    <div className="container px-6 py-12 sm:py-16 lg:py-20">
       <div className="mx-auto max-w-3xl">
-        <Button variant="ghost" size="sm" asChild className="mb-8">
+        <Button variant="ghost" size="sm" asChild className="mb-6 text-xs">
           <Link href="/blog">
-            <ArrowLeft className="mr-2 h-4 w-4" />
+            <ArrowLeft className="mr-1.5 h-3.5 w-3.5" />
             Back to Blog
           </Link>
         </Button>
 
         <article>
-          <header className="mb-8 space-y-3">
-            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+          <header className="mb-6 space-y-2.5">
+            <h1 className="text-3xl font-bold leading-tight tracking-tight sm:text-4xl">
               {post.title}
             </h1>
-            <p className="text-lg text-muted-foreground sm:text-xl">{post.description}</p>
+            <p className="text-sm text-muted-foreground sm:text-base">{post.description}</p>
 
-            <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+            <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
               <time dateTime={post.date}>
                 {new Date(post.date).toLocaleDateString("en-US", {
                   year: "numeric",
@@ -75,7 +75,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   day: "numeric",
                 })}
               </time>
-              <Separator orientation="vertical" className="h-4" />
+              <Separator orientation="vertical" className="h-3" />
               <div className="flex flex-wrap gap-1.5">
                 {post.tags.map((tag) => (
                   <Badge key={tag} variant="secondary" className="text-xs font-normal">
@@ -86,7 +86,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </div>
           </header>
 
-          <Separator className="mb-8" />
+          <Separator className="mb-6" />
 
           <div
             className="prose prose-zinc dark:prose-invert max-w-none"

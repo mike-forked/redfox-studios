@@ -35,7 +35,7 @@ export function ProjectCard({ project, onClick }: ProjectCardProps) {
         ) : (
           <div className="flex h-full w-full items-center justify-center">
             <div className="text-center">
-              <div className="mb-2 text-4xl font-bold text-muted-foreground/20">
+              <div className="mb-1.5 text-3xl font-bold text-muted-foreground/20">
                 {project.title.charAt(0)}
               </div>
               <p className="text-xs text-muted-foreground">No preview available</p>
@@ -44,12 +44,12 @@ export function ProjectCard({ project, onClick }: ProjectCardProps) {
         )}
       </div>
 
-      <div className="p-6">
-        <h3 className="mb-2 text-lg font-semibold tracking-tight">
+      <div className="p-4">
+        <h3 className="mb-1.5 text-base font-semibold leading-tight tracking-tight">
           {project.title}
         </h3>
 
-        <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
+        <p className="mb-3 text-xs leading-relaxed text-muted-foreground">
           {project.description}
         </p>
 
