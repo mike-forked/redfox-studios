@@ -21,5 +21,9 @@ export const navConfig = {
       label: "Team",
       href: "/team",
     },
+    {
+      label: "Careers",
+      href: "/careers",
+    },
   ] as NavLink[],
 } as const;
