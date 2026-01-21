@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { ThemeToggle } from "./theme-toggle"
 
 export function Footer() {
   return (
@@ -97,9 +98,7 @@ export function Footer() {
 
           <div className="mt-10 flex flex-col gap-3 border-t pt-6 text-xs text-muted-foreground md:flex-row md:items-center md:justify-between">
             <p>&copy; {new Date().getFullYear()} RedFox Studios. All rights reserved.</p>
-            <Link href="/" className="font-semibold text-foreground">
-              RedFox
-            </Link>
+            <ThemeToggle />
           </div>
         </div>
       </div>

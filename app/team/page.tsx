@@ -58,18 +58,18 @@ export default function TeamPage() {
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {teamMembers.map((member) => (
           <Card key={member.name} className="overflow-hidden">
-            <div className="aspect-square w-full overflow-hidden bg-muted">
+            <div className="aspect-[4/3] w-full overflow-hidden bg-muted">
               {member.image ? (
                 <Image
                   src={member.image}
                   alt={member.name}
                   width={400}
-                  height={400}
+                  height={300}
                   className="h-full w-full object-cover"
                 />
               ) : (
                 <div className="flex h-full w-full items-center justify-center">
-                  <span className="text-6xl font-bold text-muted-foreground/30">
+                  <span className="text-4xl font-bold text-muted-foreground/30">
                     {member.name
                       .split(" ")
                       .map((n) => n[0])
@@ -79,30 +79,30 @@ export default function TeamPage() {
               )}
             </div>
 
-            <CardHeader>
-              <CardTitle>{member.name}</CardTitle>
-              <CardDescription>{member.role}</CardDescription>
+            <CardHeader className="pb-3">
+              <CardTitle className="text-base">{member.name}</CardTitle>
+              <CardDescription className="text-xs">{member.role}</CardDescription>
             </CardHeader>
 
-            <CardContent className="space-y-4">
-              <p className="text-sm text-muted-foreground">{member.bio}</p>
+            <CardContent className="space-y-3">
+              <p className="text-xs leading-relaxed text-muted-foreground">{member.bio}</p>
 
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-1.5">
                 {member.skills.map((skill) => (
-                  <Badge key={skill} variant="secondary">
+                  <Badge key={skill} variant="secondary" className="text-xs font-normal">
                     {skill}
                   </Badge>
                 ))}
               </div>
 
-              <div className="flex gap-3 pt-2">
+              <div className="flex gap-2.5 pt-1">
                 {member.email && (
                   <a
                     href={`mailto:${member.email}`}
                     className="text-muted-foreground transition-colors hover:text-foreground"
                     aria-label="Email"
                   >
-                    <Mail className="h-5 w-5" />
+                    <Mail className="h-4 w-4" />
                   </a>
                 )}
                 {member.github && (
@@ -113,7 +113,7 @@ export default function TeamPage() {
                     className="text-muted-foreground transition-colors hover:text-foreground"
                     aria-label="GitHub"
                   >
-                    <Github className="h-5 w-5" />
+                    <Github className="h-4 w-4" />
                   </a>
                 )}
                 {member.linkedin && (
@@ -124,7 +124,7 @@ export default function TeamPage() {
                     className="text-muted-foreground transition-colors hover:text-foreground"
                     aria-label="LinkedIn"
                   >
-                    <Linkedin className="h-5 w-5" />
+                    <Linkedin className="h-4 w-4" />
                   </a>
                 )}
               </div>
