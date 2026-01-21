@@ -2,39 +2,7 @@ import Image from "next/image"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Github, Linkedin, Mail } from "lucide-react"
-
-interface TeamMember {
-  name: string
-  role: string
-  bio: string
-  skills: string[]
-  image?: string
-  github?: string
-  linkedin?: string
-  email?: string
-}
-
-// Placeholder team data - replace with actual data later
-const teamMembers: TeamMember[] = [
-  {
-    name: "Team Member 1",
-    role: "Lead Developer",
-    bio: "Passionate game developer with expertise in Unreal Engine and C++.",
-    skills: ["Unreal Engine", "C++", "Blueprint", "Game Design"],
-  },
-  {
-    name: "Team Member 2",
-    role: "Game Designer",
-    bio: "Creative game designer focused on player experience and mechanics.",
-    skills: ["Game Design", "Level Design", "Prototyping"],
-  },
-  {
-    name: "Team Member 3",
-    role: "Technical Artist",
-    bio: "Bridging the gap between art and programming.",
-    skills: ["Shaders", "VFX", "Optimization", "Unity"],
-  },
-]
+import { teamMembers, teamSection } from "@/content/team"
 
 export const metadata = {
   title: "Our Team | RedFox Studios",
@@ -47,11 +15,10 @@ export default function TeamPage() {
       <div className="mx-auto max-w-5xl">
         <div className="mb-10 text-center">
           <h1 className="mb-2 text-3xl font-bold leading-tight tracking-tight sm:text-4xl">
-            Meet Our Team
+            {teamSection.title}
           </h1>
           <p className="mx-auto max-w-2xl text-sm text-muted-foreground sm:text-base">
-            We're a passionate team of developers, designers, and engineers dedicated to
-            creating exceptional gaming experiences.
+            {teamSection.description}
           </p>
         </div>
 

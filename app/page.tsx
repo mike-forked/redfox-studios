@@ -13,6 +13,10 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
+import { heroContent } from "@/content/hero"
+import { features, featuresSection } from "@/content/features"
+import { testimonials, testimonialsSection } from "@/content/testimonials"
+import { siteConfig } from "@/content/site-config"
 
 const projects: Project[] = projectsData as Project[]
 
@@ -26,20 +30,20 @@ export default function Home() {
         <div className="absolute inset-0 -z-10 h-full w-full bg-[linear-gradient(to_right,#8882_1px,transparent_1px),linear-gradient(to_bottom,#8882_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
         <div className="container px-6 py-16 sm:py-20 lg:py-24">
           <div className="mx-auto max-w-3xl text-center">
+            <div className="mb-4 inline-flex items-center rounded-full border bg-muted/30 px-3 py-1 text-xs font-medium">
+              {heroContent.badge}
+            </div>
             <h1 className="text-balance text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-              The Game Development
-              <br />
-              Company for the Web
+              {heroContent.title}
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-pretty text-sm leading-relaxed text-muted-foreground sm:mt-5 sm:text-base">
-              Used by some of the world's largest companies, RedFox is a game development
-              studio specializing in{" "}
-              <span className="font-medium text-foreground">Unreal Engine</span> and
-              cutting-edge technologies.
+              {heroContent.description}
             </p>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-2 sm:mt-7">
               <Button size="lg" className="h-9 rounded-full px-6 text-sm" asChild>
-                <Link href="#contact">Get Started</Link>
+                <Link href={heroContent.cta.primary.href}>
+                  {heroContent.cta.primary.label}
+                </Link>
               </Button>
               <Button
                 size="lg"
@@ -47,8 +51,9 @@ export default function Home() {
                 className="h-9 rounded-full px-6 text-sm"
                 asChild
               >
-                <Link href="/blog">
-                  Learn RedFox <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
+                <Link href={heroContent.cta.secondary.href}>
+                  {heroContent.cta.secondary.label}{" "}
+                  <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
                 </Link>
               </Button>
             </div>
@@ -62,65 +67,27 @@ export default function Home() {
           <div className="mx-auto max-w-5xl">
             <div className="mb-10 text-center">
               <p className="mb-2 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                WHAT'S IN REDFOX?
+                {featuresSection.badge}
               </p>
               <h2 className="text-balance text-2xl font-bold leading-tight tracking-tight sm:text-3xl">
-                Everything you need to build great
-                <br />
-                games on the web.
+                {featuresSection.title}
               </h2>
             </div>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            <div className="group rounded-xl border bg-card p-4 shadow-sm transition-shadow hover:shadow-md">
-              <h3 className="mb-1 text-sm font-semibold">Game Development</h3>
-              <p className="text-xs leading-relaxed text-muted-foreground">
-                Full-cycle development from concept to launch. We transform ideas into
-                immersive gaming experiences.
-              </p>
-            </div>
-
-            <div className="group rounded-xl border bg-card p-4 shadow-sm transition-shadow hover:shadow-md">
-              <h3 className="mb-1 text-sm font-semibold">Unreal Engine Expertise</h3>
-              <p className="text-xs leading-relaxed text-muted-foreground">
-                Advanced knowledge in Unreal Engine 5, including Nanite, Lumen, and
-                cutting-edge rendering technologies.
-              </p>
-            </div>
-
-            <div className="group rounded-xl border bg-card p-4 shadow-sm transition-shadow hover:shadow-md">
-              <h3 className="mb-1 text-sm font-semibold">Technical Solutions</h3>
-              <p className="text-xs leading-relaxed text-muted-foreground">
-                Custom tools, plugins, and technical solutions to streamline your
-                development workflow.
-              </p>
-            </div>
-
-            <div className="group rounded-xl border bg-card p-4 shadow-sm transition-shadow hover:shadow-md">
-              <h3 className="mb-1 text-sm font-semibold">Performance Optimization</h3>
-              <p className="text-xs leading-relaxed text-muted-foreground">
-                We ensure your games run smoothly across all platforms with advanced
-                optimization techniques.
-              </p>
-            </div>
-
-            <div className="group rounded-xl border bg-card p-4 shadow-sm transition-shadow hover:shadow-md">
-              <h3 className="mb-1 text-sm font-semibold">Consulting Services</h3>
-              <p className="text-xs leading-relaxed text-muted-foreground">
-                Expert guidance on architecture, best practices, and technical decisions
-                for your projects.
-              </p>
-            </div>
-
-            <div className="group rounded-xl border bg-card p-4 shadow-sm transition-shadow hover:shadow-md">
-              <h3 className="mb-1 text-sm font-semibold">Cross-Platform Development</h3>
-              <p className="text-xs leading-relaxed text-muted-foreground">
-                Build once, deploy everywhere. We create games that work seamlessly
-                across all platforms.
-              </p>
+              {features.map((feature) => (
+                <div
+                  key={feature.title}
+                  className="group rounded-xl border bg-card p-4 shadow-sm transition-shadow hover:shadow-md"
+                >
+                  <h3 className="mb-1 text-sm font-semibold">{feature.title}</h3>
+                  <p className="text-xs leading-relaxed text-muted-foreground">
+                    {feature.description}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
         </div>
       </section>
 
@@ -189,10 +156,10 @@ export default function Home() {
           <div className="mx-auto max-w-5xl">
             <div className="mb-10 text-center">
               <p className="mb-2 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                TESTIMONIALS
+                {testimonialsSection.badge}
               </p>
               <h2 className="text-balance text-2xl font-bold leading-tight tracking-tight sm:text-3xl">
-                What our clients say
+                {testimonialsSection.title}
               </h2>
             </div>
 
@@ -204,95 +171,30 @@ export default function Home() {
               className="mx-auto w-full max-w-4xl"
             >
               <CarouselContent>
-                <CarouselItem className="md:basis-1/2 lg:basis-1/3">
-                  <div className="h-full rounded-xl border bg-card p-6 shadow-sm">
-                    <div className="mb-4">
-                      <svg
-                        className="h-8 w-8 text-muted-foreground/30"
-                        fill="currentColor"
-                        viewBox="0 0 32 32"
-                      >
-                        <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
-                      </svg>
-                    </div>
-                    <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
-                      Working with RedFox was an absolute pleasure. Their expertise in Unreal
-                      Engine brought our vision to life beyond expectations.
-                    </p>
-                    <div>
-                      <p className="text-sm font-semibold">Sarah Johnson</p>
-                      <p className="text-xs text-muted-foreground">CEO, GameTech Inc</p>
-                    </div>
-                  </div>
-                </CarouselItem>
-
-                <CarouselItem className="md:basis-1/2 lg:basis-1/3">
-                  <div className="h-full rounded-xl border bg-card p-6 shadow-sm">
-                    <div className="mb-4">
-                      <svg
-                        className="h-8 w-8 text-muted-foreground/30"
-                        fill="currentColor"
-                        viewBox="0 0 32 32"
-                      >
-                        <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
-                      </svg>
-                    </div>
-                    <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
-                      The technical expertise and attention to detail from the RedFox team is
-                      unmatched. They delivered a high-performance game that exceeded our goals.
-                    </p>
-                    <div>
-                      <p className="text-sm font-semibold">Michael Chen</p>
-                      <p className="text-xs text-muted-foreground">CTO, Digital Studios</p>
-                    </div>
-                  </div>
-                </CarouselItem>
-
-                <CarouselItem className="md:basis-1/2 lg:basis-1/3">
-                  <div className="h-full rounded-xl border bg-card p-6 shadow-sm">
-                    <div className="mb-4">
-                      <svg
-                        className="h-8 w-8 text-muted-foreground/30"
-                        fill="currentColor"
-                        viewBox="0 0 32 32"
-                      >
-                        <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
-                      </svg>
-                    </div>
-                    <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
-                      RedFox transformed our concept into a stunning, immersive experience. Their
-                      professionalism and skill set them apart from other studios.
-                    </p>
-                    <div>
-                      <p className="text-sm font-semibold">Emily Rodriguez</p>
-                      <p className="text-xs text-muted-foreground">
-                        Product Director, Interactive Media
+                {testimonials.map((testimonial) => (
+                  <CarouselItem key={testimonial.author.name} className="md:basis-1/2 lg:basis-1/3">
+                    <div className="h-full rounded-xl border bg-card p-6 shadow-sm">
+                      <div className="mb-4">
+                        <svg
+                          className="h-8 w-8 text-muted-foreground/30"
+                          fill="currentColor"
+                          viewBox="0 0 32 32"
+                        >
+                          <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
+                        </svg>
+                      </div>
+                      <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
+                        {testimonial.quote}
                       </p>
+                      <div>
+                        <p className="text-sm font-semibold">{testimonial.author.name}</p>
+                        <p className="text-xs text-muted-foreground">
+                          {testimonial.author.title}, {testimonial.author.company}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                </CarouselItem>
-
-                <CarouselItem className="md:basis-1/2 lg:basis-1/3">
-                  <div className="h-full rounded-xl border bg-card p-6 shadow-sm">
-                    <div className="mb-4">
-                      <svg
-                        className="h-8 w-8 text-muted-foreground/30"
-                        fill="currentColor"
-                        viewBox="0 0 32 32"
-                      >
-                        <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
-                      </svg>
-                    </div>
-                    <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
-                      Outstanding collaboration and communication throughout the entire project.
-                      RedFox truly understands what it takes to build world-class games.
-                    </p>
-                    <div>
-                      <p className="text-sm font-semibold">David Kim</p>
-                      <p className="text-xs text-muted-foreground">Lead Developer, Nexus Games</p>
-                    </div>
-                  </div>
-                </CarouselItem>
+                  </CarouselItem>
+                ))}
               </CarouselContent>
               <CarouselPrevious />
               <CarouselNext />
@@ -314,7 +216,7 @@ export default function Home() {
             </p>
             <div className="mt-6 flex flex-col gap-2 sm:mt-7 sm:flex-row sm:justify-center">
               <Button size="lg" className="h-9 rounded-full px-6 text-sm" asChild>
-                <a href="mailto:contact@redfoxstudios.com">Contact Us</a>
+                <a href={`mailto:${siteConfig.contact.email}`}>Contact Us</a>
               </Button>
               <Button
                 size="lg"
