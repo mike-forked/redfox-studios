@@ -11,6 +11,7 @@ export function Navbar() {
   return (
     <nav className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-md">
       <div className="container flex h-14 items-center justify-between">
+        <div className="mx-auto flex w-full max-w-7xl items-center justify-between">
         <div className="flex items-center gap-10">
           <Link href="/" className="flex items-center space-x-2">
             <span className="text-lg font-bold tracking-tight">RedFox</span>
@@ -49,6 +50,7 @@ export function Navbar() {
             <Moon className="absolute h-[1.1rem] w-[1.1rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
             <span className="sr-only">Toggle theme</span>
           </Button>
+        </div>
         </div>
       </div>
     </nav>

@@ -4,7 +4,8 @@ export function Footer() {
   return (
     <footer className="w-full border-t">
       <div className="container px-6 py-12">
-        <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
+        <div className="mx-auto max-w-5xl">
+          <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
           <div className="flex flex-col gap-2.5">
             <h3 className="text-xs font-medium">Product</h3>
             <div className="flex flex-col gap-2 text-xs">
@@ -94,11 +95,12 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col gap-3 border-t pt-6 text-xs text-muted-foreground md:flex-row md:items-center md:justify-between">
-          <p>&copy; {new Date().getFullYear()} RedFox Studios. All rights reserved.</p>
-          <Link href="/" className="font-semibold text-foreground">
-            RedFox
-          </Link>
+          <div className="mt-10 flex flex-col gap-3 border-t pt-6 text-xs text-muted-foreground md:flex-row md:items-center md:justify-between">
+            <p>&copy; {new Date().getFullYear()} RedFox Studios. All rights reserved.</p>
+            <Link href="/" className="font-semibold text-foreground">
+              RedFox
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

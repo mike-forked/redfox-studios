@@ -52,18 +52,19 @@ export default function Home() {
       {/* Features Section */}
       <section className="border-y bg-muted/30">
         <div className="container px-6 py-12 sm:py-16 lg:py-20">
-          <div className="mb-10 text-center">
-            <p className="mb-2 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-              WHAT'S IN REDFOX?
-            </p>
-            <h2 className="text-balance text-2xl font-bold leading-tight tracking-tight sm:text-3xl">
-              Everything you need to build great
-              <br />
-              games on the web.
-            </h2>
-          </div>
+          <div className="mx-auto max-w-5xl">
+            <div className="mb-10 text-center">
+              <p className="mb-2 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                WHAT'S IN REDFOX?
+              </p>
+              <h2 className="text-balance text-2xl font-bold leading-tight tracking-tight sm:text-3xl">
+                Everything you need to build great
+                <br />
+                games on the web.
+              </h2>
+            </div>
 
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <div className="group rounded-xl border bg-card p-4 shadow-sm transition-shadow hover:shadow-md">
               <h3 className="mb-1 text-sm font-semibold">Game Development</h3>
               <p className="text-xs leading-relaxed text-muted-foreground">
@@ -113,22 +114,25 @@ export default function Home() {
             </div>
           </div>
         </div>
+        </div>
       </section>
 
       {/* Projects Section */}
       {projects.length > 0 && (
         <section className="bg-background">
           <div className="container px-6 py-12 sm:py-16 lg:py-20">
-            <div className="mb-10">
-              <p className="mb-2 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                SHOWCASE
-              </p>
-              <h2 className="text-balance text-2xl font-bold leading-tight tracking-tight sm:text-3xl">
-                The framework of choice when it matters
-              </h2>
-            </div>
+            <div className="mx-auto max-w-5xl">
+              <div className="mb-10">
+                <p className="mb-2 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                  SHOWCASE
+                </p>
+                <h2 className="text-balance text-2xl font-bold leading-tight tracking-tight sm:text-3xl">
+                  The framework of choice when it matters
+                </h2>
+              </div>
 
-            <HomeProjects projects={projects} />
+              <HomeProjects projects={projects} />
+            </div>
           </div>
         </section>
       )}
@@ -137,34 +141,36 @@ export default function Home() {
       {latestPosts.length > 0 && (
         <section className="border-t bg-muted/30">
           <div className="container px-6 py-12 sm:py-16 lg:py-20">
-            <div className="mb-10 flex items-end justify-between">
-              <div>
-                <p className="mb-2 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                  LATEST POSTS
-                </p>
-                <h2 className="text-balance text-2xl font-bold leading-tight tracking-tight sm:text-3xl">
-                  Learn about game development
-                </h2>
+            <div className="mx-auto max-w-5xl">
+              <div className="mb-10 flex items-end justify-between">
+                <div>
+                  <p className="mb-2 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                    LATEST POSTS
+                  </p>
+                  <h2 className="text-balance text-2xl font-bold leading-tight tracking-tight sm:text-3xl">
+                    Learn about game development
+                  </h2>
+                </div>
+                <Button variant="ghost" className="hidden text-sm sm:inline-flex" asChild>
+                  <Link href="/blog">
+                    View All Posts <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
+                  </Link>
+                </Button>
               </div>
-              <Button variant="ghost" className="hidden text-sm sm:inline-flex" asChild>
-                <Link href="/blog">
-                  View All Posts <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
-                </Link>
-              </Button>
-            </div>
 
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {latestPosts.slice(0, 3).map((post) => (
                 <BlogCard key={post.slug} post={post} />
               ))}
             </div>
 
-            <div className="mt-6 text-center sm:hidden">
-              <Button variant="ghost" className="text-sm" asChild>
-                <Link href="/blog">
-                  View All Posts <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
-                </Link>
-              </Button>
+              <div className="mt-6 text-center sm:hidden">
+                <Button variant="ghost" className="text-sm" asChild>
+                  <Link href="/blog">
+                    View All Posts <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
+                  </Link>
+                </Button>
+              </div>
             </div>
           </div>
         </section>
