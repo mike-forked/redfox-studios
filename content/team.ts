@@ -25,7 +25,7 @@ export const teamMembers: TeamMember[] = [
     image: "/team/member-1.jpg",
     github: "https://github.com/username",
     linkedin: "https://linkedin.com/in/username",
-    email: "member1@redfoxstudios.com",
+    email: "member1@redfox-studios.org",
   },
   */
   {

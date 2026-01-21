@@ -1,14 +1,14 @@
 export const siteConfig = {
   name: "RedFox Studios",
-  description: "Professional Unreal Engine Development & Technical Solutions",
-  url: "https://redfoxstudios.com", // Update with your actual domain
+  description: "Game Development & Technical Solutions",
+  url: "https://redfox-studios.org",
 
   contact: {
-    email: "contact@redfoxstudios.com",
+    email: "contact@redfox-studios.org",
   },
 
   social: {
-    github: "https://github.com/redfoxstudios",
-    linkedin: "https://linkedin.com/company/redfoxstudios",
+    github: "https://github.com/redfox-studios",
+    linkedin: "https://linkedin.com/company/redfox-studios",
   },
 } as const;

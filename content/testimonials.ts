@@ -15,38 +15,38 @@ export const testimonialsSection = {
 export const testimonials: Testimonial[] = [
   {
     quote:
-      "Working with RedFox was an absolute pleasure. Their expertise in Unreal Engine brought our vision to life beyond expectations.",
+      "Blah blah blah",
     author: {
-      name: "Sarah Johnson",
-      title: "CEO",
-      company: "GameTech Inc",
+      name: "Person 1",
+      title: "Title",
+      company: "Company",
     },
   },
   {
     quote:
-      "The technical expertise and attention to detail from the RedFox team is unmatched. They delivered a high-performance game that exceeded our goals.",
+      "Blah blah blah",
     author: {
-      name: "Michael Chen",
-      title: "CTO",
-      company: "Digital Studios",
+      name: "Person 2",
+      title: "Title",
+      company: "Company",
     },
   },
   {
     quote:
-      "RedFox transformed our concept into a stunning, immersive experience. Their professionalism and skill set them apart from other studios.",
+      "Blah blah blah",
     author: {
-      name: "Emily Rodriguez",
-      title: "Product Director",
-      company: "Interactive Media",
+      name: "Person 3",
+      title: "Title",
+      company: "Company",
     },
   },
   {
     quote:
-      "Outstanding collaboration and communication throughout the entire project. RedFox truly understands what it takes to build world-class games.",
+      "Blah blah blah",
     author: {
-      name: "David Kim",
-      title: "Lead Developer",
-      company: "Nexus Games",
+      name: "Person 4",
+      title: "Title",
+      company: "Company",
     },
-  },
+  }
 ];

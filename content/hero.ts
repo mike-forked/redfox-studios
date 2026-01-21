@@ -6,7 +6,7 @@ export const heroContent = {
   cta: {
     primary: {
       label: "Get in Touch",
-      href: "mailto:contact@redfoxstudios.com",
+      href: "mailto:support@redfox-studios.org",
     },
     secondary: {
       label: "View Our Work",

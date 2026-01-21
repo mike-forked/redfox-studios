@@ -29,11 +29,11 @@ export const footerConfig = {
     {
       title: "Connect",
       links: [
-        { label: "Email", href: "mailto:contact@redfoxstudios.com", external: true },
-        { label: "GitHub", href: "https://github.com/redfoxstudios", external: true },
+        { label: "Email", href: "mailto:contact@redfox-studios.org", external: true },
+        { label: "GitHub", href: "https://github.com/redfox-studios", external: true },
         {
           label: "LinkedIn",
-          href: "https://linkedin.com/company/redfoxstudios",
+          href: "https://linkedin.com/company/redfox-studios",
           external: true,
         },
       ],
