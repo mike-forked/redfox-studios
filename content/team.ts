@@ -16,15 +16,23 @@ export const teamSection = {
 } as const;
 
 export const teamMembers: TeamMember[] = [
+  /*
+  {
+    name: "",
+    role: "",
+    bio: "",
+    skills: ["", ""],
+    image: "/team/member-1.jpg",
+    github: "https://github.com/username",
+    linkedin: "https://linkedin.com/in/username",
+    email: "member1@redfoxstudios.com",
+  },
+  */
   {
     name: "Team Member 1",
     role: "Lead Developer",
     bio: "Passionate game developer with expertise in Unreal Engine and C++.",
     skills: ["Unreal Engine", "C++", "Blueprint", "Game Design"],
-    // image: "/team/member-1.jpg",
-    // github: "https://github.com/username",
-    // linkedin: "https://linkedin.com/in/username",
-    // email: "member1@redfoxstudios.com",
   },
   {
     name: "Team Member 2",

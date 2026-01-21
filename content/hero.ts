@@ -1,6 +1,6 @@
 export const heroContent = {
-  badge: "Professional Game Development",
-  title: "Bringing Your Unreal Engine Vision to Reality",
+  badge: "Currently Hiring",
+  title: "Bringing Your Vision to Reality",
   description:
     "Expert Unreal Engine development and technical consulting services. From prototypes to full production, we deliver high-quality solutions tailored to your needs.",
   cta: {
