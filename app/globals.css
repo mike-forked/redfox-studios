@@ -126,4 +126,26 @@
   .container {
     @apply mx-auto w-full max-w-6xl;
   }
+
+  /* Text selection */
+  ::selection {
+    @apply bg-foreground text-background;
+  }
+
+  ::-moz-selection {
+    @apply bg-foreground text-background;
+  }
+
+  /* Media selection only (images, videos, etc) */
+  img::selection,
+  video::selection,
+  canvas::selection {
+    @apply bg-orange-300 text-orange-300;
+  }
+
+  img::-moz-selection,
+  video::-moz-selection,
+  canvas::-moz-selection {
+    @apply bg-orange-300 text-orange-300;
+  }
 }
