@@ -47,37 +47,34 @@ export default async function JobPage({ params }: JobPageProps) {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <div className="border-b">
-        <div className="container px-6 py-8">
-          <Link
-            href="/careers"
-            className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground"
-          >
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Careers
-          </Link>
+        <div className="container max-w-7xl px-6 py-6">
+          <div className="flex items-center gap-3 text-sm text-muted-foreground">
+            <Link href="/careers" className="hover:text-foreground">
+              {job.department}
+            </Link>
+            <span>·</span>
+            <span className="inline-flex items-center gap-1.5">
+              <MapPin className="h-3.5 w-3.5" />
+              {job.type === "Hybrid" ? job.locations[0] : job.locations.join(", ")}
+            </span>
+            <span>·</span>
+            <span className="inline-flex items-center gap-1.5">
+              <Clock className="h-3.5 w-3.5" />
+              {job.type}
+            </span>
+          </div>
         </div>
       </div>
 
-      <div className="container px-6 py-12 sm:py-16">
-        <div className="mx-auto max-w-4xl">
+      <div className="container max-w-7xl px-6 py-12 sm:py-16">
+        <div className="mx-auto max-w-3xl">
           {/* Job Header */}
           <div className="mb-12">
-            <div className="mb-4 flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-              <span className="inline-flex items-center gap-1.5">
-                <MapPin className="h-4 w-4" />
-                {job.locations.join(", ")}
-              </span>
-              <span className="inline-flex items-center gap-1.5">
-                <Clock className="h-4 w-4" />
-                {job.type}
-              </span>
-            </div>
-
-            <h1 className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl">
+            <h1 className="mb-8 text-4xl font-bold tracking-tight sm:text-5xl">
               {job.title}
             </h1>
 
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+            <div className="mb-8">
               <p className="text-sm text-muted-foreground">
                 Careers / {job.department}
               </p>
@@ -85,10 +82,9 @@ export default async function JobPage({ params }: JobPageProps) {
           </div>
 
           {/* Apply Button */}
-          <div className="mb-12">
+          <div className="mb-16">
             <Button
-              size="lg"
-              className="h-12 rounded-full bg-foreground px-8 text-sm font-medium text-background hover:bg-foreground/90"
+              className="h-10 rounded-md bg-black px-6 text-sm font-medium text-white hover:bg-black/90 dark:bg-white dark:text-black dark:hover:bg-white/90"
               asChild
             >
               <a
@@ -100,11 +96,11 @@ export default async function JobPage({ params }: JobPageProps) {
           </div>
 
           {/* Job Content */}
-          <div className="space-y-12">
-            {/* About Vercel/Company */}
-            <section>
-              <h2 className="mb-4 text-2xl font-bold">About RedFox Studios</h2>
-              <p className="leading-relaxed text-muted-foreground">
+          <div className="prose prose-neutral dark:prose-invert max-w-none">
+            {/* About Company */}
+            <section className="mb-10">
+              <h2 className="mb-4 text-xl font-semibold">About RedFox Studios:</h2>
+              <p className="text-[15px] leading-relaxed text-muted-foreground">
                 RedFox Studios is a game development company dedicated to creating
                 innovative and immersive gaming experiences. We specialize in Unreal
                 Engine development and work with cutting-edge technologies to push the
@@ -114,40 +110,38 @@ export default async function JobPage({ params }: JobPageProps) {
             </section>
 
             {/* Job Description */}
-            <section>
-              <h2 className="mb-4 text-2xl font-bold">About the Role</h2>
-              <p className="leading-relaxed text-muted-foreground">
+            <section className="mb-10">
+              <h2 className="mb-4 text-xl font-semibold">About the Role:</h2>
+              <p className="text-[15px] leading-relaxed text-muted-foreground">
                 {job.description}
               </p>
             </section>
 
             {/* What You Will Do */}
-            <section>
-              <h2 className="mb-4 text-2xl font-bold">What You Will Do</h2>
-              <ul className="space-y-3">
+            <section className="mb-10">
+              <h2 className="mb-4 text-xl font-semibold">What You Will Do:</h2>
+              <ul className="space-y-2">
                 {job.responsibilities.map((responsibility, index) => (
                   <li
                     key={index}
-                    className="flex gap-3 leading-relaxed text-muted-foreground"
+                    className="text-[15px] leading-relaxed text-muted-foreground"
                   >
-                    <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-foreground" />
-                    <span>{responsibility}</span>
+                    {responsibility}
                   </li>
                 ))}
               </ul>
             </section>
 
             {/* About You */}
-            <section>
-              <h2 className="mb-4 text-2xl font-bold">About You</h2>
-              <ul className="space-y-3">
+            <section className="mb-10">
+              <h2 className="mb-4 text-xl font-semibold">About You:</h2>
+              <ul className="space-y-2">
                 {job.requirements.map((requirement, index) => (
                   <li
                     key={index}
-                    className="flex gap-3 leading-relaxed text-muted-foreground"
+                    className="text-[15px] leading-relaxed text-muted-foreground"
                   >
-                    <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-foreground" />
-                    <span>{requirement}</span>
+                    {requirement}
                   </li>
                 ))}
               </ul>
@@ -155,16 +149,15 @@ export default async function JobPage({ params }: JobPageProps) {
 
             {/* Bonus If You */}
             {job.niceToHave && job.niceToHave.length > 0 && (
-              <section>
-                <h2 className="mb-4 text-2xl font-bold">Bonus If You</h2>
-                <ul className="space-y-3">
+              <section className="mb-10">
+                <h2 className="mb-4 text-xl font-semibold">Bonus If You:</h2>
+                <ul className="space-y-2">
                   {job.niceToHave.map((item, index) => (
                     <li
                       key={index}
-                      className="flex gap-3 leading-relaxed text-muted-foreground"
+                      className="text-[15px] leading-relaxed text-muted-foreground"
                     >
-                      <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-foreground" />
-                      <span>{item}</span>
+                      {item}
                     </li>
                   ))}
                 </ul>
@@ -172,16 +165,15 @@ export default async function JobPage({ params }: JobPageProps) {
             )}
 
             {/* Benefits */}
-            <section>
-              <h2 className="mb-4 text-2xl font-bold">Benefits</h2>
-              <ul className="space-y-3">
+            <section className="mb-10">
+              <h2 className="mb-4 text-xl font-semibold">Benefits:</h2>
+              <ul className="space-y-2">
                 {job.benefits.map((benefit, index) => (
                   <li
                     key={index}
-                    className="flex gap-3 leading-relaxed text-muted-foreground"
+                    className="text-[15px] leading-relaxed text-muted-foreground"
                   >
-                    <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-foreground" />
-                    <span>{benefit}</span>
+                    {benefit}
                   </li>
                 ))}
               </ul>
@@ -189,8 +181,8 @@ export default async function JobPage({ params }: JobPageProps) {
 
             {/* Salary Range */}
             {job.salaryRange && (
-              <section>
-                <p className="text-sm text-muted-foreground">
+              <section className="mb-10">
+                <p className="text-[15px] leading-relaxed text-muted-foreground">
                   The salary range for this role is {job.salaryRange}. Actual
                   salary will be based on job-related skills, experience, and
                   location. Compensation outside of San Francisco may be adjusted
@@ -203,7 +195,7 @@ export default async function JobPage({ params }: JobPageProps) {
 
             {/* Footer Note */}
             <section className="border-t pt-8">
-              <p className="text-sm leading-relaxed text-muted-foreground">
+              <p className="text-[15px] leading-relaxed text-muted-foreground">
                 RedFox Studios is committed to fostering and empowering an inclusive
                 community within our organization. We do not discriminate on the basis
                 of race, religion, color, gender expression or identity, sexual
@@ -217,10 +209,9 @@ export default async function JobPage({ params }: JobPageProps) {
           </div>
 
           {/* Apply Button Bottom */}
-          <div className="mt-12 border-t pt-8">
+          <div className="mt-12">
             <Button
-              size="lg"
-              className="h-12 rounded-full bg-foreground px-8 text-sm font-medium text-background hover:bg-foreground/90"
+              className="h-10 rounded-md bg-black px-6 text-sm font-medium text-white hover:bg-black/90 dark:bg-white dark:text-black dark:hover:bg-white/90"
               asChild
             >
               <a

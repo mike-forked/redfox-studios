@@ -11,24 +11,21 @@ export function CareerHero() {
   }
 
   return (
-    <section className="relative border-b">
-      <div className="absolute inset-0 -z-10 h-full w-full bg-[linear-gradient(to_right,#8882_1px,transparent_1px),linear-gradient(to_bottom,#8882_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
-
+    <section className="relative border-b bg-background">
       {/* Decorative colored lines */}
-      <div className="absolute right-0 top-32 h-px w-16 bg-green-500" />
-      <div className="absolute right-0 top-52 h-px w-24 bg-yellow-500" />
+      <div className="absolute right-[10%] top-[30%] h-px w-12 bg-green-500" />
+      <div className="absolute right-[15%] top-[50%] h-px w-16 bg-yellow-500" />
 
-      <div className="container px-6 py-32 sm:py-40 lg:py-48">
-        <div className="mx-auto max-w-2xl">
-          <h1 className="text-balance text-5xl font-bold leading-tight tracking-tight sm:text-6xl lg:text-7xl">
+      <div className="container max-w-7xl px-6 py-24 sm:py-32 lg:py-40">
+        <div className="max-w-xl">
+          <h1 className="text-5xl font-bold leading-[1.1] tracking-tight sm:text-6xl">
             Join us.
             <br />
             Make games. Better.
           </h1>
-          <div className="mt-8">
+          <div className="mt-10">
             <Button
-              size="lg"
-              className="h-11 rounded-full bg-foreground px-8 text-sm font-medium text-background hover:bg-foreground/90"
+              className="h-10 rounded-md bg-black px-6 text-sm font-medium text-white hover:bg-black/90 dark:bg-white dark:text-black dark:hover:bg-white/90"
               onClick={scrollToPositions}
             >
               Open Positions

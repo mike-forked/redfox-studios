@@ -3,7 +3,6 @@
 import { useState } from "react"
 import Link from "next/link"
 import { ChevronDown } from "lucide-react"
-import { Button } from "@/components/ui/button"
 import type { Job } from "@/content/careers"
 
 interface CareerListingsProps {
@@ -61,15 +60,15 @@ export function CareerListings({ jobs }: CareerListingsProps) {
 
   return (
     <section id="open-positions" className="bg-background">
-      <div className="container px-6 py-16 sm:py-20 lg:py-24">
-        <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[240px_1fr]">
+      <div className="container max-w-7xl px-6 py-16 sm:py-20">
+        <div className="grid gap-16 lg:grid-cols-[200px_1fr]">
           {/* Filters Sidebar */}
-          <aside className="space-y-6">
+          <aside className="space-y-8">
             {/* Location Filter */}
-            <div className="border-b pb-6">
+            <div>
               <button
                 onClick={() => setLocationOpen(!locationOpen)}
-                className="flex w-full items-center justify-between text-sm font-medium"
+                className="mb-4 flex w-full items-center justify-between text-sm font-medium"
               >
                 Location
                 <ChevronDown
@@ -79,19 +78,19 @@ export function CareerListings({ jobs }: CareerListingsProps) {
                 />
               </button>
               {locationOpen && (
-                <div className="mt-4 space-y-3">
+                <div className="space-y-2.5">
                   {locations.map((location) => (
                     <label
                       key={location}
-                      className="flex cursor-pointer items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
+                      className="flex cursor-pointer items-start gap-2.5 text-sm"
                     >
                       <input
                         type="checkbox"
                         checked={selectedLocations.includes(location)}
                         onChange={() => toggleLocation(location)}
-                        className="h-4 w-4 rounded border-muted-foreground/30"
+                        className="mt-0.5 h-3.5 w-3.5 rounded-sm border-gray-300"
                       />
-                      {location}
+                      <span className="text-muted-foreground">{location}</span>
                     </label>
                   ))}
                 </div>
@@ -99,10 +98,10 @@ export function CareerListings({ jobs }: CareerListingsProps) {
             </div>
 
             {/* Department Filter */}
-            <div className="border-b pb-6">
+            <div>
               <button
                 onClick={() => setDepartmentOpen(!departmentOpen)}
-                className="flex w-full items-center justify-between text-sm font-medium"
+                className="mb-4 flex w-full items-center justify-between text-sm font-medium"
               >
                 Department
                 <ChevronDown
@@ -112,19 +111,19 @@ export function CareerListings({ jobs }: CareerListingsProps) {
                 />
               </button>
               {departmentOpen && (
-                <div className="mt-4 space-y-3">
+                <div className="space-y-2.5">
                   {departments.map((department) => (
                     <label
                       key={department}
-                      className="flex cursor-pointer items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
+                      className="flex cursor-pointer items-start gap-2.5 text-sm"
                     >
                       <input
                         type="checkbox"
                         checked={selectedDepartments.includes(department)}
                         onChange={() => toggleDepartment(department)}
-                        className="h-4 w-4 rounded border-muted-foreground/30"
+                        className="mt-0.5 h-3.5 w-3.5 rounded-sm border-gray-300"
                       />
-                      {department}
+                      <span className="text-muted-foreground">{department}</span>
                     </label>
                   ))}
                 </div>
@@ -133,31 +132,30 @@ export function CareerListings({ jobs }: CareerListingsProps) {
           </aside>
 
           {/* Job Listings */}
-          <div className="space-y-16">
+          <div className="space-y-12">
             {Object.entries(groupedJobs).map(([department, deptJobs]) => (
               <div key={department}>
-                <h2 className="mb-8 text-2xl font-bold">{department}</h2>
-                <div className="space-y-6">
+                <h2 className="mb-6 text-xl font-semibold">{department}</h2>
+                <div className="space-y-0">
                   {deptJobs.map((job) => (
                     <div
                       key={job.id}
-                      className="flex items-start justify-between border-b pb-6 last:border-0"
+                      className="flex items-start justify-between border-b border-border py-5"
                     >
                       <div className="flex-1">
-                        <h3 className="mb-2 text-lg font-semibold">
+                        <h3 className="mb-1.5 text-base font-medium">
                           {job.title}
                         </h3>
                         <p className="text-sm text-muted-foreground">
                           {job.type} · {job.locations.join(", ")}
                         </p>
                       </div>
-                      <Button
-                        variant="ghost"
-                        className="ml-4 text-sm font-medium"
-                        asChild
+                      <Link
+                        href={`/careers/${job.slug}`}
+                        className="ml-6 whitespace-nowrap text-sm text-muted-foreground hover:text-foreground"
                       >
-                        <Link href={`/careers/${job.slug}`}>Read more</Link>
-                      </Button>
+                        Read more
+                      </Link>
                     </div>
                   ))}
                 </div>
@@ -166,7 +164,7 @@ export function CareerListings({ jobs }: CareerListingsProps) {
 
             {filteredJobs.length === 0 && (
               <div className="py-12 text-center">
-                <p className="text-muted-foreground">
+                <p className="text-sm text-muted-foreground">
                   No positions found matching your criteria.
                 </p>
               </div>
