@@ -5,7 +5,10 @@
       "Bash(npm install:*)",
       "Bash(npm run build:*)",
       "Bash(find:*)",
-      "Bash(npm run dev:*)"
+      "Bash(npm run dev:*)",
+      "Bash(dir /s /b \"*career*\" \"*job*\" \"*position*\")",
+      "Bash(findstr:*)",
+      "Bash(timeout:*)"
     ]
   }
 }

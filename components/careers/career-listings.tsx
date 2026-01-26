@@ -11,24 +11,17 @@ interface CareerListingsProps {
 
 export function CareerListings({ jobs }: CareerListingsProps) {
   const [locationOpen, setLocationOpen] = useState(false)
-  const [departmentOpen, setDepartmentOpen] = useState(false)
-  const [selectedLocations, setSelectedLocations] = useState<string[]>([])
-  const [selectedDepartments, setSelectedDepartments] = useState<string[]>([])
+  const [departmentOpen, setDepartmentOpen] = useState(true)
+  const [selectedDepartment, setSelectedDepartment] = useState<string | null>(null)
 
   // Extract unique locations and departments
   const locations = Array.from(new Set(jobs.flatMap((job) => job.locations)))
-  const departments = Array.from(new Set(jobs.map((job) => job.department)))
+  const departments = ["All departments", ...Array.from(new Set(jobs.map((job) => job.department)))]
 
-  // Filter jobs based on selections
-  const filteredJobs = jobs.filter((job) => {
-    const locationMatch =
-      selectedLocations.length === 0 ||
-      job.locations.some((loc) => selectedLocations.includes(loc))
-    const departmentMatch =
-      selectedDepartments.length === 0 ||
-      selectedDepartments.includes(job.department)
-    return locationMatch && departmentMatch
-  })
+  // Filter jobs based on selection
+  const filteredJobs = selectedDepartment && selectedDepartment !== "All departments"
+    ? jobs.filter((job) => job.department === selectedDepartment)
+    : jobs
 
   // Group jobs by department
   const groupedJobs = filteredJobs.reduce(
@@ -42,89 +35,83 @@ export function CareerListings({ jobs }: CareerListingsProps) {
     {} as Record<string, Job[]>
   )
 
-  const toggleLocation = (location: string) => {
-    setSelectedLocations((prev) =>
-      prev.includes(location)
-        ? prev.filter((l) => l !== location)
-        : [...prev, location]
-    )
+  // Format location for display (Vercel style)
+  const formatLocation = (job: Job) => {
+    const hasRemote = job.locations.includes("Remote")
+    if (hasRemote) {
+      return "Remote - United States"
+    }
+    // For hybrid/on-site, show the locations
+    const cityLocations = job.locations.filter(loc => loc !== "Hybrid")
+    if (cityLocations.length > 0) {
+      return `${job.type} - ${cityLocations.join(", ")}`
+    }
+    return job.type
   }
 
-  const toggleDepartment = (department: string) => {
-    setSelectedDepartments((prev) =>
-      prev.includes(department)
-        ? prev.filter((d) => d !== department)
-        : [...prev, department]
-    )
+  // Get the title for the positions section
+  const getSectionTitle = () => {
+    if (selectedDepartment && selectedDepartment !== "All departments") {
+      // Remove "Positions" if already in name, otherwise add it
+      if (selectedDepartment.toLowerCase().includes("position")) {
+        return selectedDepartment
+      }
+      return `${selectedDepartment} Positions`
+    }
+    return "Open Positions"
   }
 
   return (
-    <section id="open-positions" className="bg-background">
+    <section id="open-positions" className="border-t bg-background">
       <div className="container max-w-7xl px-6 py-16 sm:py-20">
-        <div className="grid gap-16 lg:grid-cols-[200px_1fr]">
+        <div className="grid gap-12 lg:grid-cols-[220px_1fr] lg:gap-16">
           {/* Filters Sidebar */}
-          <aside className="space-y-8">
+          <aside className="space-y-6">
             {/* Location Filter */}
             <div>
               <button
                 onClick={() => setLocationOpen(!locationOpen)}
-                className="mb-4 flex w-full items-center justify-between text-sm font-medium"
+                className="flex w-full items-center justify-between py-2 text-sm font-medium"
               >
                 Location
                 <ChevronDown
-                  className={`h-4 w-4 transition-transform ${
+                  className={`h-4 w-4 text-muted-foreground transition-transform ${
                     locationOpen ? "rotate-180" : ""
                   }`}
                 />
               </button>
-              {locationOpen && (
-                <div className="space-y-2.5">
-                  {locations.map((location) => (
-                    <label
-                      key={location}
-                      className="flex cursor-pointer items-start gap-2.5 text-sm"
-                    >
-                      <input
-                        type="checkbox"
-                        checked={selectedLocations.includes(location)}
-                        onChange={() => toggleLocation(location)}
-                        className="mt-0.5 h-3.5 w-3.5 rounded-sm border-gray-300"
-                      />
-                      <span className="text-muted-foreground">{location}</span>
-                    </label>
-                  ))}
-                </div>
-              )}
             </div>
 
             {/* Department Filter */}
             <div>
               <button
                 onClick={() => setDepartmentOpen(!departmentOpen)}
-                className="mb-4 flex w-full items-center justify-between text-sm font-medium"
+                className="flex w-full items-center justify-between py-2 text-sm font-medium"
               >
                 Department
                 <ChevronDown
-                  className={`h-4 w-4 transition-transform ${
+                  className={`h-4 w-4 text-muted-foreground transition-transform ${
                     departmentOpen ? "rotate-180" : ""
                   }`}
                 />
               </button>
               {departmentOpen && (
-                <div className="space-y-2.5">
+                <div className="mt-3 space-y-1">
                   {departments.map((department) => (
-                    <label
+                    <button
                       key={department}
-                      className="flex cursor-pointer items-start gap-2.5 text-sm"
+                      onClick={() => setSelectedDepartment(
+                        department === "All departments" ? null : department
+                      )}
+                      className={`block w-full rounded-md px-3 py-2 text-left text-sm transition-colors ${
+                        (department === "All departments" && !selectedDepartment) ||
+                        department === selectedDepartment
+                          ? "bg-foreground text-background"
+                          : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                      }`}
                     >
-                      <input
-                        type="checkbox"
-                        checked={selectedDepartments.includes(department)}
-                        onChange={() => toggleDepartment(department)}
-                        className="mt-0.5 h-3.5 w-3.5 rounded-sm border-gray-300"
-                      />
-                      <span className="text-muted-foreground">{department}</span>
-                    </label>
+                      {department}
+                    </button>
                   ))}
                 </div>
               )}
@@ -132,43 +119,54 @@ export function CareerListings({ jobs }: CareerListingsProps) {
           </aside>
 
           {/* Job Listings */}
-          <div className="space-y-12">
-            {Object.entries(groupedJobs).map(([department, deptJobs]) => (
-              <div key={department}>
-                <h2 className="mb-6 text-xl font-semibold">{department}</h2>
-                <div className="space-y-0">
+          <div>
+            {/* Section Title */}
+            <h2 className="mb-8 text-2xl font-semibold tracking-tight">
+              {getSectionTitle()}
+            </h2>
+
+            {/* Jobs List */}
+            <div className="space-y-0">
+              {Object.entries(groupedJobs).map(([department, deptJobs]) => (
+                <div key={department}>
+                  {/* Only show department heading if showing all */}
+                  {!selectedDepartment && (
+                    <h3 className="mb-4 mt-8 text-base font-medium first:mt-0">
+                      {department}
+                    </h3>
+                  )}
                   {deptJobs.map((job) => (
                     <div
                       key={job.id}
-                      className="flex items-start justify-between border-b border-border py-5"
+                      className="flex items-center justify-between border-b border-border py-6"
                     >
-                      <div className="flex-1">
-                        <h3 className="mb-1.5 text-base font-medium">
+                      <div className="flex-1 pr-4">
+                        <h4 className="text-base font-medium">
                           {job.title}
-                        </h3>
-                        <p className="text-sm text-muted-foreground">
-                          {job.type} · {job.locations.join(", ")}
+                        </h4>
+                        <p className="mt-1 text-sm text-muted-foreground">
+                          {formatLocation(job)}
                         </p>
                       </div>
                       <Link
                         href={`/careers/${job.slug}`}
-                        className="ml-6 whitespace-nowrap text-sm text-muted-foreground hover:text-foreground"
+                        className="shrink-0 rounded-full border border-border px-4 py-2 text-sm text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
                       >
                         Read more
                       </Link>
                     </div>
                   ))}
                 </div>
-              </div>
-            ))}
+              ))}
 
-            {filteredJobs.length === 0 && (
-              <div className="py-12 text-center">
-                <p className="text-sm text-muted-foreground">
-                  No positions found matching your criteria.
-                </p>
-              </div>
-            )}
+              {filteredJobs.length === 0 && (
+                <div className="py-12 text-center">
+                  <p className="text-sm text-muted-foreground">
+                    No positions found matching your criteria.
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
